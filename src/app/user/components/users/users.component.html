@@ -1,0 +1,6 @@
+<div *ngIf="selectedUser">
+  {{selectedUser.email}}
+</div>
+
+<app-user *ngFor="let user of users" [user]="user" (xxx)="catchEE($event)"></app-user>
+
