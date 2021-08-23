@@ -1,22 +1,24 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {IUserModel} from "../../../models/iUserModel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit{
   @Input()
   user:IUserModel;
-  @Output()
-  xxx:EventEmitter<IUserModel> = new EventEmitter<IUserModel>()
-  constructor() { }
+
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  selectUser() {
-    this.xxx.emit(this.user)
+
+  details() {
+    this.router.navigate(['users/', this.user.id], {state: this.user})
   }
+
 }
